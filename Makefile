@@ -46,6 +46,7 @@ test: $(PATCHER) $(HAPTIC_PATCHER) $(HAPTIC_BRIDGE) $(HAPTIC_TEST)
 	zsh tests/test_installers.zsh ./install.zsh ./uninstall.zsh \
 		./repair-input-monitoring.zsh
 	zsh tests/test_app_transaction.zsh ./lib/app-transaction.zsh
+	python3 -m pytest -q tests/test_steam_shortcut.py
 
 check: syntax test
 

@@ -39,6 +39,29 @@ sessions, and keep the official app as the source for rebuilds. For vibration,
 enable GeForce NOW under **System Settings → Privacy & Security → Input
 Monitoring** after the first launch, then reopen the app.
 
+## Custom controller layout (back buttons, gyro)
+
+Steam applies a game's own controller layout only to apps it starts itself.
+To remap the back buttons (L4/R4/L5/R5) or gyro for GFN alone, add the patched
+copy to Steam, then quit Steam and run:
+
+```sh
+./add-steam-shortcut.py           # preview
+./add-steam-shortcut.py --apply
+```
+
+It adds `GeForce NOW (Steam Controller)` to the most recently signed-in
+account (`--account` to pick another), targeting the executable inside the
+bundle: a `.app` target is started through LaunchServices, Steam loses the
+process, and the Desktop layout applies instead. The original `shortcuts.vdf`
+is backed up under
+`~/Library/Application Support/gfn-steam-controller-fix/backups/`.
+
+Launch GFN from that shortcut, then open its **Controller settings → Edit
+Layout → Buttons** and bind the back buttons. GFN sees a standard Xbox pad, so
+a back button can be any Xbox button, a keyboard key or mouse action (for
+games that accept mixed input), or a Steam action such as hold-for-gyro.
+
 ## Update
 
 GFN updates remove the patch. After each one, quit GeForce NOW and run:
